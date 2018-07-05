@@ -13,6 +13,10 @@ class Source:
 	def notify(self):
 		for s in self.subscribers:
 			s.notify(self)
+		self.clear()
+		
+	def clear(self):
+		pass
 			
 	def name(self):
 		return self.name
