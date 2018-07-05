@@ -10,6 +10,7 @@ class SourceMail(Source):
 
 	def __init__(self, config):
 		self.Source("mail", config)
+		self.new_content=[]
 
 	def read(self):
 		try:
@@ -33,8 +34,22 @@ class SourceMail(Source):
 						msg = email.message_from_string(response_part[1])
 						email_subject = msg['subject']
 						email_from = msg['from']
-						print 'From : ' + email_from + '\n'
-						print 'Subject : ' + email_subject + '\n'
+						self.new_content.append(msg['subject']+" von "+msg['from'])
 
 		except Exception, e:
 			print str(e)
+			
+		if len(self.new_content)>0:
+			self.notify()
+	
+	def clear(self):
+		self.new_content=[]
+			
+	def summary(self):
+		return [str(len(self.new_content))+" neue E-Mails"]
+		
+	def text(self):
+		return self.new_content
+		
+	def priority(self):
+		return [0]
