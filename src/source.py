@@ -21,10 +21,10 @@ class Source:
 		return self.name()
 		
 	def summary(self):
-		return ""
+		return []
 		
 	def text(self):
-		return ""
+		return []
 		
 	def priority(self):
-		return 0
+		return []
