@@ -26,12 +26,14 @@ class SourceDWD(Source):
 	def run(self):
 		while True:
 			self.read()
-			print(self.config.get(["mail", "interval"]))
-			sleep(int(self.config.get(["mail", "interval"])))
+			sleep(int(self.get("interval")))
 
 	def read(self):
 		try:
 			data = get_jsonparsed_data(self.get("url"))
+			for warnid in self.get("warn_ids").split(","):
+				if warnid in data['warnings']:
+					print(data['warnings'][warnid])
 
 		except Exception as e:
 			print(str(e))

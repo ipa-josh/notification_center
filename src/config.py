@@ -20,7 +20,7 @@ class Config:
 		self.config['dwd']={}
 		self.config['whatsapp']={}
 		
-		self.config['global']['modules'] = "mail"
+		self.config['global']['modules'] = "dwd"
 		
 		self.config['whatsapp']['qr'] = "qr.png"
 		
@@ -29,8 +29,9 @@ class Config:
 		self.config['mail']['email'] = ""
 		self.config['mail']['password'] = ""
 		
+		self.config['dwd']['interval'] = "600"
 		self.config['dwd']['url'] = "https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json"
-		self.config['dwd']['region_id'] = "109776000,109780000"
+		self.config['dwd']['warn_ids'] = "109776000,109780000"
 		
 		self.config.read(filename)
 		

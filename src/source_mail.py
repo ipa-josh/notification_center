@@ -22,7 +22,7 @@ class SourceMail(Source):
 	def run(self):
 		while True:
 			self.read()
-			sleep(int(self.config.get(["mail", "interval"])))
+			sleep(int(self.get("interval")))
 
 	def read(self):
 		try:
