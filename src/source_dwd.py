@@ -5,7 +5,7 @@ from threading import Thread
 from time import sleep
 import traceback
 from urllib.request import urlopen
-import json
+import json, re
 
 
 def get_jsonparsed_data(url):
@@ -33,7 +33,8 @@ class SourceDWD(Source):
 			data = get_jsonparsed_data(self.get("url"))
 			for warnid in self.get("warn_ids").split(","):
 				if warnid in data['warnings']:
-					print(data['warnings'][warnid])
+					for w in data['warnings'][warnid]:
+						self.new_content.append( re.sub(r'\(.*\)', '', w['description']).replace("  "," ") )
 
 		except Exception as e:
 			print(str(e))
@@ -46,6 +47,8 @@ class SourceDWD(Source):
 		self.new_content=[]
 			
 	def summary(self):
+		if len(self.new_content)==1:
+			return self.new_content
 		return [str(len(self.new_content))+" neue Warnungen"]
 		
 	def text(self):
