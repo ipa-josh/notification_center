@@ -15,7 +15,13 @@ class Config:
 		self.config = configparser.ConfigParser()
 		
 		#setup defaults
+		self.config['global']={}
+		self.config['mail']={}
+		self.config['whatsapp']={}
+		
+		self.config['global']['modules'] = "mail"
 		self.config['whatsapp']['qr'] = "qr.png"
+		self.config['mail']['interval'] = "600"
 		
 		self.config.read(filename)
 		
@@ -24,3 +30,10 @@ class Config:
 		
 	def filename_qr(self):
 		return self.config['whatsapp']['qr']
+		
+	def get(self, tags):
+		v=self.config
+		for t in tags:
+			if t in v: v = v[t]
+			else: return ""
+		return v

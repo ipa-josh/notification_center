@@ -1,16 +1,27 @@
 #!/usr/bin/python3
 
-import Source from source
+from source import Source
 import smtplib
 import time
 import imaplib
 import email
+from threading import Thread
+from time import sleep
 
 class SourceMail(Source):
 
 	def __init__(self, config):
-		self.Source("mail", config)
+		Source.__init__(self, "mail", config)
 		self.new_content=[]
+		
+	def listen(self):
+		self.thread = Thread(target = self.run)
+		self.thread.start()
+		
+	def run(self):
+		while True:
+			self.read()
+			sleep(int(self.config.get(["mail", "interval"])))
 
 	def read(self):
 		try:
@@ -53,3 +64,6 @@ class SourceMail(Source):
 		
 	def priority(self):
 		return [0]
+
+def create(config):
+	return SourceMail(config)

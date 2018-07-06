@@ -17,9 +17,12 @@ class Source:
 		
 	def clear(self):
 		pass
+		
+	def listen(self):
+		pass
 			
 	def get(self, tag):
-		return self.config[self.name()][tag]
+		return self.config.get([self.name(), tag])
 			
 	def name(self):
 		return self.name
