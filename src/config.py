@@ -17,6 +17,7 @@ class Config:
 		#setup defaults
 		self.config['global']={}
 		self.config['mail']={}
+		self.config['dwd']={}
 		self.config['whatsapp']={}
 		
 		self.config['global']['modules'] = "mail"
@@ -27,6 +28,9 @@ class Config:
 		self.config['mail']['server'] = ""
 		self.config['mail']['email'] = ""
 		self.config['mail']['password'] = ""
+		
+		self.config['dwd']['url'] = "https://www.dwd.de/DWD/warnungen/warnapp/json/warnings.json"
+		self.config['dwd']['region_id'] = "109776000,109780000"
 		
 		self.config.read(filename)
 		
