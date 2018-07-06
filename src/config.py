@@ -19,8 +19,12 @@ class Config:
 		self.config['mail']={}
 		self.config['dwd']={}
 		self.config['whatsapp']={}
+		self.config['openhab']={}
 		
 		self.config['global']['modules'] = "dwd"
+		
+		self.config['openhab']['url'] = 'http://localhost:8080/rest'
+		self.config['openhab']['alexas'] = ""
 		
 		self.config['whatsapp']['qr'] = "qr.png"
 		
