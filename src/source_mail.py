@@ -7,6 +7,7 @@ import imaplib
 import email
 from threading import Thread
 from time import sleep
+import traceback
 
 class SourceMail(Source):
 
@@ -47,8 +48,9 @@ class SourceMail(Source):
 						email_from = msg['from']
 						self.new_content.append(msg['subject']+" von "+msg['from'])
 
-		except Exception, e:
-			print str(e)
+		except Exception as e:
+			print(str(e))
+			traceback.print_exc()
 			
 		if len(self.new_content)>0:
 			self.notify()

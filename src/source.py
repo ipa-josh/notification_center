@@ -3,7 +3,7 @@
 class Source:
 	
 	def __init__(self, name, config):
-		self.name = name
+		self.name_ = name
 		self.config = config
 		self.subscribers = []
 		
@@ -25,7 +25,7 @@ class Source:
 		return self.config.get([self.name(), tag])
 			
 	def name(self):
-		return self.name
+		return self.name_
 		
 	def name_nice(self):
 		return self.name()

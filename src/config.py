@@ -20,8 +20,13 @@ class Config:
 		self.config['whatsapp']={}
 		
 		self.config['global']['modules'] = "mail"
+		
 		self.config['whatsapp']['qr'] = "qr.png"
+		
 		self.config['mail']['interval'] = "600"
+		self.config['mail']['server'] = ""
+		self.config['mail']['email'] = ""
+		self.config['mail']['password'] = ""
 		
 		self.config.read(filename)
 		
@@ -35,5 +40,5 @@ class Config:
 		v=self.config
 		for t in tags:
 			if t in v: v = v[t]
-			else: return ""
+			else: return None
 		return v
