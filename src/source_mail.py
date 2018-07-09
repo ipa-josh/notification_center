@@ -27,6 +27,7 @@ class SourceMail(Source):
 	def read(self):
 		try:
 			mail = imaplib.IMAP4_SSL(self.get("server"))
+			mail._mode_utf8() #enable('UTF8=ACCEPT')
 			mail.login(self.get("email"),self.get("password"))
 			mail.select('inbox')
 
